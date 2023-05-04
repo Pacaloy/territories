@@ -1,9 +1,15 @@
-import { useRef } from 'react';
+import { useRef, useContext } from 'react';
+import { useNavigate } from 'react-router-dom';
+import UserContext from '../../UserContext';
 import styles from './Login.module.css';
 
+import credentials from './../../data/credentials.json';
+
 function Login() {
+  const navigate = useNavigate();
   const username = useRef(null);
   const password = useRef(null);
+  const { setIsAuthorize } = useContext(UserContext);
 
   const onSubmitHandler = (e) => {
     e.preventDefault();
@@ -17,7 +23,22 @@ function Login() {
       }),
     })
     .then(res => res.json())
-    .then(data => console.log(data));
+    .then(data => {
+      if (data.message !== 'Invalid username or password.') {
+        setIsAuthorize(true);
+        navigate('/');
+      } else {
+        alert('Invalid username or password');
+      }
+    })
+    .catch(error => {
+      if (username.current.value === credentials.username && password.current.value === credentials.password) {
+        setIsAuthorize(true);
+        navigate('/');
+      } else {
+        alert('Invalid username or password');
+      }
+    });
   };
 
   return (
