@@ -21,8 +21,10 @@ function Home() {
   };
 
   useEffect(() => {
-    fetchTerritories();
-  }, []);
+    if (isAuthorize) {
+      fetchTerritories();
+    }
+  }, [isAuthorize]);
 
   return (
     (isAuthorize) ?
