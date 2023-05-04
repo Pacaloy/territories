@@ -42,7 +42,7 @@ function Login() {
   };
 
   return (
-    <form onSubmit={onSubmitHandler}>
+    <form className={styles.form} onSubmit={onSubmitHandler}>
       <label>Username</label>
       <input ref={username} required type="text" />
       <label>Password</label>

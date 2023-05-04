@@ -1,0 +1,19 @@
+.container {
+  margin: 30px;
+}
+
+h2 {
+  margin-bottom: 20px;
+}
+
+p {
+  margin-bottom: 15px;
+}
+
+li {
+  list-style: none;
+}
+
+.child {
+  padding-left: 30px;
+}
